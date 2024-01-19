@@ -75,32 +75,43 @@ public class Main {
 
                 // Öğe etkileşimli hale gelene kadar bekleyin
                 //Başlık-Elements
-                WebElement titleElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByCssSelector("h2[class^='title']")));
-                WebElement priceElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByCssSelector("h2[class^='price']")));
-                WebElement addressElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByCssSelector("div[class='address']")));
+                WebElement titleElement = wait.until(ExpectedConditions.visibilityOfElementLocated
+                                                     (new By.ByCssSelector("h2[class^='title']")));
+                WebElement priceElement = wait.until(ExpectedConditions.visibilityOfElementLocated
+                                                     (new By.ByCssSelector("h2[class^='price']")));
+                WebElement addressElement = wait.until(ExpectedConditions.visibilityOfElementLocated
+                                                       (new By.ByCssSelector("div[class='address']")));
 
                 //İletişim Bilgileri
-                WebElement contactInformationElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//h5[@class='agent-name']")));
+                WebElement contactInformationElement = wait.until(ExpectedConditions.visibilityOfElementLocated
+                                                                  (new By.ByXPath("//h5[@class='agent-name']")));
 
                 //Detaylar-Elements
-                WebElement releaseDateElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[1]/span[2]")));
-                WebElement adTypeElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[2]/span[2]")));
-                WebElement adNumberElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[3]/span[2]")));
+                WebElement releaseDateElement = wait.until(ExpectedConditions.visibilityOfElementLocated
+                                                           (new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[1]/span[2]")));
+                WebElement adTypeElement = wait.until(ExpectedConditions.visibilityOfElementLocated
+                                                      (new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[2]/span[2]")));
+                WebElement adNumberElement = wait.until(ExpectedConditions.visibilityOfElementLocated
+                                                        (new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[3]/span[2]")));
                 WebElement purposeElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[5]/span[2]")));
-                WebElement squareMetersElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[6]/span[2]")));
+                WebElement squareMetersElement = wait.until(ExpectedConditions.visibilityOfElementLocated
+                                                            (new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[6]/span[2]")));
 
                 //İmkanlar-Oda-Elements
                 // Aşağıdaki yorum satırları her ilanda değişiklik gösterdiği için yukarıda tek parçada alındı.
-                WebElement roomQuantityElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-amenities\"]/div/div[1]/div/div[2]/div")));
+                WebElement roomQuantityElement = wait.until(ExpectedConditions.visibilityOfElementLocated
+                                                            (new By.ByXPath("//*[@id=\"section-amenities\"]/div/div[1]/div/div[2]/div")));
                 //WebElement roomQuantityElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[7]/span[2]")));
                 //WebElement bathroomQuantityElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[8]/span[2]")));
                 //WebElement kitchenQuantityElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-amenities\"]/div/div[1]/div/div[2]/div/div[3]/div/span[2]")));
 
                 //Temel Özellikler-Elements
-                WebElement basicFeaturesElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-overview\"]/div")));
+                WebElement basicFeaturesElement = wait.until(ExpectedConditions.visibilityOfElementLocated
+                                                             (new By.ByXPath("//*[@id=\"section-overview\"]/div")));
 
                 //Genel Bakış
-                WebElement overviewElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-overview\"]/div")));
+                WebElement overviewElement = wait.until(ExpectedConditions.visibilityOfElementLocated
+                                                        (new By.ByXPath("//*[@id=\"section-overview\"]/div")));
 
                 //Başlık-getText
                 String agentId = driver.findElement(By.name("agent_id")).getAttribute("value");
