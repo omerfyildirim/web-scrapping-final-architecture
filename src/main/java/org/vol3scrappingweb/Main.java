@@ -47,34 +47,28 @@ public class Main {
             String url = baseUrl + page;
             driver.get(url);
 
-            // Sayfanın tamamen yüklenmesini bekleyin
             wait.until(WebDriver -> (Boolean) ((JavascriptExecutor) driver).executeScript("return document.readyState === 'complete';"));
 
             WebElement listingsContainer = driver.findElement(By.className("utf-listings-container-area"));
             List<WebElement> listingLinks = listingsContainer.findElements(By.className("card-divider"));
 
             for (WebElement listingLink : listingLinks) {
-                // Sayfanın tamamen yüklenmesini bekleyin
                 wait.until(WebDriver -> (Boolean) ((JavascriptExecutor) driver).executeScript("return document.readyState === 'complete';"));
 
                 int retryCount = 3;
                 for (int i = 0; i < retryCount; i++) {
                     try {
-                        // Sayfayı aşağı kaydır
                         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 270);");
 
                         WebElement textTruncateElement = listingLink.findElement(By.className("property-image"));
                         wait.until(ExpectedConditions.elementToBeClickable(textTruncateElement)).click();
 
-                        // Önceki işlemler
-                        break; // Eğer buraya kadar hatasız bir şekilde geldiyse döngüden çık
+                        break; 
                     } catch (StaleElementReferenceException e) {
-                        // Hata durumunda bir şey yapmanıza gerek yok, sadece döngünün devam etmesine izin verin
+                        
                     }
                 }
 
-                // Öğe etkileşimli hale gelene kadar bekleyin
-                //Başlık-Elements
                 WebElement titleElement = wait.until(ExpectedConditions.visibilityOfElementLocated
                                                      (new By.ByCssSelector("h2[class^='title']")));
                 WebElement priceElement = wait.until(ExpectedConditions.visibilityOfElementLocated
@@ -82,11 +76,9 @@ public class Main {
                 WebElement addressElement = wait.until(ExpectedConditions.visibilityOfElementLocated
                                                        (new By.ByCssSelector("div[class='address']")));
 
-                //İletişim Bilgileri
                 WebElement contactInformationElement = wait.until(ExpectedConditions.visibilityOfElementLocated
                                                                   (new By.ByXPath("//h5[@class='agent-name']")));
 
-                //Detaylar-Elements
                 WebElement releaseDateElement = wait.until(ExpectedConditions.visibilityOfElementLocated
                                                            (new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[1]/span[2]")));
                 WebElement adTypeElement = wait.until(ExpectedConditions.visibilityOfElementLocated
@@ -97,15 +89,13 @@ public class Main {
                 WebElement squareMetersElement = wait.until(ExpectedConditions.visibilityOfElementLocated
                                                             (new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[6]/span[2]")));
 
-                //İmkanlar-Oda-Elements
-                // Aşağıdaki yorum satırları her ilanda değişiklik gösterdiği için yukarıda tek parçada alındı.
+               
                 WebElement roomQuantityElement = wait.until(ExpectedConditions.visibilityOfElementLocated
                                                             (new By.ByXPath("//*[@id=\"section-amenities\"]/div/div[1]/div/div[2]/div")));
                 //WebElement roomQuantityElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[7]/span[2]")));
                 //WebElement bathroomQuantityElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-details\"]/div/div/ul/li[8]/span[2]")));
                 //WebElement kitchenQuantityElement = wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//*[@id=\"section-amenities\"]/div/div[1]/div/div[2]/div/div[3]/div/span[2]")));
 
-                //Temel Özellikler-Elements
                 WebElement basicFeaturesElement = wait.until(ExpectedConditions.visibilityOfElementLocated
                                                              (new By.ByXPath("//*[@id=\"section-overview\"]/div")));
 
@@ -192,7 +182,6 @@ public class Main {
                         BufferedImage image = ImageIO.read(new URL(imageUrl));
                         if (image != null) {
                             File outputfile = new File(ilanKlasoru, "image" + imageIndex + ".png");
-                            // Belirli bir alanın dışındaki kısmın kesilmesi
                             BufferedImage croppedImage = cropOutsideTopArea(image, 1021, 90);
                             ImageIO.write(croppedImage, "png", outputfile);
                             imageIndex++;
@@ -222,15 +211,12 @@ public class Main {
         int sourceWidth = source.getWidth();
         int sourceHeight = source.getHeight();
 
-        // Kesecek bölgenin koordinatları
         int x = 0;
         int y = Math.min(sourceHeight, cropHeight);
 
-        // Kesecek bölgenin boyutları
         int width = sourceWidth;
         int height = Math.max(0, sourceHeight - cropHeight);
 
-        // Kırpma işlemi
         return source.getSubimage(x, y, width, height);
     }
 
