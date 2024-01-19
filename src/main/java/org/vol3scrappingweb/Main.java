@@ -24,7 +24,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String baseUrl = "https://homele.com/tr/properties?page=";
+        String baseUrl = "XwebSite";
         int pageCount = 2;
 
         WebDriver driver = new SafariDriver();
@@ -32,7 +32,7 @@ public class Main {
 
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/postgres", "postgres", "123456");
+            connection = DriverManager.getConnection("jdbc:connection", "DbID", "password");
         } catch (SQLException e) {
             e.printStackTrace();
             return;
@@ -131,7 +131,9 @@ public class Main {
 
 
                 try {
-                    PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO listing (title, price, address, name, release, type, no, purpose, square, room, features, overview) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    PreparedStatement preparedStatement = connection.prepareStatement
+                        ("INSERT INTO listing (title, price, address, name, release, type, no, purpose, square, room, features, overview)
+                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                     preparedStatement.setString(1, title);
                     preparedStatement.setString(2, price);
                     preparedStatement.setString(3, address);
@@ -165,10 +167,10 @@ public class Main {
                 System.out.println("Overview    : " + overview);
                 System.out.println("------------------------------");
 
-                File ilanKlasoru = new File("/Users/karinriverside/Desktop/CrawlerImageFile/" + agentId);
+                File ilanKlasoru = new File("filePathWay" + agentId);
                 ilanKlasoru.mkdir();
 
-                ilanKlasoru = new File("/Users/karinriverside/Desktop/CrawlerImageFile/" + agentId + "/" + title);
+                ilanKlasoru = new File("filePathWay" + agentId + "/" + title);
                 ilanKlasoru.mkdir();
 
                 int imageIndex = 1;
